@@ -1,5 +1,7 @@
-
-
+#include <iostream>
+#include <stack>
+#include <vector>
+using namespace std;
 /*
  * 339. Nested List Weight Sum
  *
@@ -17,23 +19,25 @@ Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and 
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
- * class NestedInteger {
- *   public:
- *     // Return true if this NestedInteger holds a single integer, rather than a nested list.
- *     bool isInteger() const;
- *
- *     // Return the single integer that this NestedInteger holds, if it holds a single integer
- *     // The result is undefined if this NestedInteger holds a nested list
- *     int getInteger() const;
- *
- *     // Return the nested list that this NestedInteger holds, if it holds a nested list
- *     // The result is undefined if this NestedInteger holds a single integer
- *     const vector<NestedInteger> &getList() const;
- * };
  */
-class Solution {
-public:
-    int weightedSum(vector<NestedInteger>& nestedList, int depth){
+class NestedInteger {
+     public:
+     vector<NestedInteger> nestedInteger;
+     NestedInteger () {}
+     // Return true if this NestedInteger holds a single integer, rather than a nested list.
+     bool isInteger() const {}
+
+     // Return the single integer that this NestedInteger holds, if it holds a single integer
+     // The result is undefined if this NestedInteger holds a nested list
+     int getInteger() const {}
+
+     // Return the nested list that this NestedInteger holds, if it holds a nested list
+     // The result is undefined if this NestedInteger holds a single integer
+     const vector<NestedInteger> &getList() const {}
+};
+
+
+    int weightedSum(const vector<NestedInteger>& nestedList, int depth){
         int sum = 0;
         for (int i=0;  i < nestedList.size(); i ++) {
             if (nestedList[i].isInteger()){
@@ -44,7 +48,41 @@ public:
         }
         return sum;
     }
+    /*
     int depthSum(vector<NestedInteger>& nestedList) {
         return weightedSum(nestedList, 1);
     }
-};
+    */
+
+    /*
+     * iterate (non recursive) method:
+     */
+    int depthSum(vector<NestedInteger>& nestedList) {
+        stack<vector<NestedInteger>::const_iterator> beginStack;
+        stack<vector<NestedInteger>::const_iterator> endStack;
+        stack<int> depthStack;
+        depthStack.push(1);
+        int sum = 0, depth = 1;
+        vector<NestedInteger>::const_iterator start = nestedList.begin();
+        vector<NestedInteger>::const_iterator end = nestedList.end();
+        while(start != end || beginStack.size() != 0){
+            for (;start != end; start ++){
+                if(start->isInteger()) {
+                    sum += start->getInteger() * depth;
+                } else {
+                    beginStack.push(start->getList().begin());
+                    endStack.push(start->getList().end());
+                    depthStack.push(depth+1);
+                }
+            }
+            if (beginStack.size() > 0){
+                start = beginStack.top();
+                end = endStack.top();
+                depth = depthStack.top();
+                beginStack.pop();
+                endStack.pop();
+                depthStack.pop();
+            }
+        }
+        return sum;
+    }

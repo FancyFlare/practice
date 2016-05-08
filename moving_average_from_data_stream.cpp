@@ -20,7 +20,7 @@ class MovingAverage {
 public:
     /** Initialize your data structure here. */
     vector<int> dataStream;
-    int windowSize = 0;
+    int windowSize;
     MovingAverage(int size) {
         windowSize = size;
     }

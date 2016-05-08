@@ -35,8 +35,9 @@ int titleToNumber(string s) {
     }
     return result;
 }
-
+/*
 int main(int argc, char* argv[]){
     //cout << convertToTitle(26);
     printf("%d",titleToNumber("AB"));
 }
+*/
