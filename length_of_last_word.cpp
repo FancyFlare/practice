@@ -6,21 +6,18 @@ int lengthOfLastWord(string s) {
         return 0;
     }
     int l = s.size() - 1;
-    while(s[l] == ' ' && l > 0){
+    while(l >= 0 && s[l] == ' '){
         l--;
     }
-    if (l==0){
-        return 0;
-    }
-    for (int i = l; i > 0; i--){
+    for (int i = l; i >= 0; i--){
         if (s[i] == ' '){
             return l-i;
         }
     }
     return l+1;
 }
-/*
+
 int main (int argc, char* argv[]){
-    cout << lengthOfLastWord("word   ");
+    cout << lengthOfLastWord("  ");
 }
-*/
+
