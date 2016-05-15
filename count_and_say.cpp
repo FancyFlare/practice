@@ -42,6 +42,8 @@ string countAndSay(int n) {
     }
     return res;
 }
+/*
 int main(int argc, char* argv[]) {
     cout << countAndSay(5);
 }
+*/
