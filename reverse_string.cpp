@@ -4,7 +4,7 @@ using namespace std;
 /*
  * 344. Reverse String
  */
-
+/*
     string reverseString(string s) {
         if (s.empty() || s.size() <= 1 ){
             return s;
@@ -20,6 +20,22 @@ using namespace std;
         }
         return ans;
     }
+*/
+string reverseString(string s) {
+    if (s.empty() || s.size() <= 1 ){
+        return s;
+    }
+    string ans = s;
+    int i = 0, j = s.size() -1;
+    while (i < j) {
+        char c = ans[i];
+        ans[i] = ans[j];
+        ans[j] = c;
+        i++;
+        j--;
+    }
+    return ans;
+}
 
     string reverseVowels(string s) {
         if (s.empty() || s.size() <= 1 ){
