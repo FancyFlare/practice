@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 /*
  * 278. First Bad Version
@@ -33,7 +34,16 @@ using namespace std;
         return firstBadVersion(1,n);
 
     }
-
+    /*
     int main (int argc, char* argv[]){
-        cout << firstBadVersion(2126753390);
+        //cout << firstBadVersion(2126753390) << endl;
+        queue<int> que1, que2;
+        que1.push(1);
+        que2.push(2);
+        queue<int>& tque = que1.empty() ? que1:que2;
+        //cout << tque.front();
+        int x=INT_MAX;
+        x*=5;
+        cout << x;
     }
+*/
