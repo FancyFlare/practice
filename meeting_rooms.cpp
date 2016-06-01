@@ -1,3 +1,7 @@
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
 
 /*
  * 252. Meeting Rooms
@@ -8,6 +12,12 @@ For example,
 Given [[0, 30],[5, 10],[15, 20]],
 return false.
  */
+    struct Interval {
+        int start;
+        int end;
+        Interval() : start(0), end(0) {}
+        Interval(int s, int e) : start(s), end(e) {}
+    };
 
     bool canAttendMeetings(vector<Interval>& intervals) {
         //sort according to starting time

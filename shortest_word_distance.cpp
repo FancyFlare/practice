@@ -1,4 +1,8 @@
-
+#include <iostream>
+#include <map>
+#include <vector>
+#include <set>
+using namespace std;
 
 /*
  * 243. Shortest Word Distance
@@ -19,7 +23,7 @@ You may assume that word1 does not equal to word2, and word1 and word2 are both 
         if(words.empty()){
             return 0;
         }
-        map<string, set<int>> wordMap;
+        map<string, set<int> > wordMap;
         for(int i=0;i<words.size(); i++){
             if(wordMap.find(words[i])==wordMap.end()){
                 set<int> newset;
